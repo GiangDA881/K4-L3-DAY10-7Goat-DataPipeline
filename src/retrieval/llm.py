@@ -1,4 +1,4 @@
-from __future__ import annotations
+import os
 
 from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -34,6 +34,7 @@ def build_llm(settings: Settings, temperature: float = 0.0):
         return ChatOpenAI(
             model=settings.model_name,
             api_key=settings.openai_api_key,
+            base_url=os.getenv("OPENAI_BASE_URL"),
             temperature=temperature,
         )
     if provider == "anthropic":
