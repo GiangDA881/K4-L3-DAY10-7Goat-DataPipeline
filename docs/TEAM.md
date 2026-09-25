@@ -10,7 +10,7 @@
 
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
-| 1 | Nguyễn Xuân Trường Giang (trưởng nhóm) | 2A202602446 | | Trưởng nhóm / Pipeline Integrator (`phase1.py`, `corruption_flow.py`) | `report/2A202602446_NguyenXuanTruongGiang.md` |
+| 1 | Nguyễn Xuân Trường Giang (trưởng nhóm) | 2A202602446 | | Trưởng nhóm / Tích hợp pipeline và kiểm thử cuối (`phase1.py`, `corruption_flow.py`) | `report/2A202602446_NguyenXuanTruongGiang.md` |
 | 2 | Nguyễn Nhân Sâm | 2A202602672 | | Ingestion, làm sạch & phục hồi (`crossref.py`, `cleaning.py`) | `report/2A202602672_NguyenNhanSam.md` |
 | 3 | Phan Trọng Hoàn | 2A202602954 | | RAG & Vector Index (`embeddings.py`, `index.py`, `qa.py`, `agent.py`) | `report/2A202602954_PhanTrongHoan.md` |
 | 4 | Đào Đức Hải | 2A202602752 | | Data Observability & Báo cáo (`quality.py`, `reporting.py`) | `report/2A202602752_DaoDucHai.md` |
@@ -21,14 +21,15 @@
 ## # Cá nhân
 
 ### ## NguyenXuanTruongGiang-2A202602446
-- **Vai trò:** Trưởng nhóm & Điều phối Pipeline.
+- **Vai trò:** Trưởng nhóm, tích hợp các module của cả nhóm và kiểm thử cuối.
 - **Công việc chi tiết đã hoàn thành:**
-  - Kết nối luồng thực thi trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
+  - Ghép module của các thành viên vào `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
   - Repair idempotent: dựng lại data sạch từ `data/raw/`, không sửa tay.
-  - Chạy end-to-end và đối chiếu artifact: `baseline_metrics.json`, `corrupted_metrics.json`, `repaired_metrics.json`.
+  - Kiểm thử cuối end-to-end: `python script/run_phase1.py` và `python script/run_corruption_flow.py`.
+  - Đối chiếu artifact sau khi chạy: `baseline_metrics.json`, `corrupted_metrics.json`, `repaired_metrics.json`, `phase1_report.md`, `corruption_report.md`.
 - **Điều học được / Đóng góp chính:**
-  - Thiết kế pipeline idempotent và quản lý trạng thái luồng dữ liệu nhiều tầng.
-- **Tín hiệu xong:** `python script/run_phase1.py` và `python script/run_corruption_flow.py` chạy xong. Hit Rate baseline 1.00, corrupted 0.80, repaired 1.00.
+  - Tích hợp pipeline nhiều người và kiểm thử toàn tuyến trước khi nộp, gồm cả lúc Quality Gate và Freshness SLA bắt dữ liệu bẩn.
+- **Tín hiệu xong:** Hai lệnh chạy thành công. Hit Rate baseline 1.00, corrupted 0.80, repaired 1.00. Data sạch `success=True`; data bẩn `success=False` và `is_fresh=False`.
 
 ### ## NguyenNhanSam-2A202602672
 - **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
