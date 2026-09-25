@@ -14,6 +14,7 @@
 | 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
 | 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
 | 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
+| 5 | Võ Doanh Nhân | 2A202602770 | | Evaluation & Synthetic Corruption (`testset.py`, `metrics.py`, `corruption.py`) | `report/2A202602770_VoDoanhNhan.md` |
 
 *(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
 
@@ -56,3 +57,12 @@
   - Đo lường và xuất bảng đối chiếu 3 trạng thái vào `data/reports/corruption_report.md`.
 - **Điều học được / Đóng góp chính:**
   - Cách thiết lập hệ thống cảnh báo sớm chặn đứng hiện tượng Silent Failure trước khi dữ liệu vào serving layer.
+
+### ## VoDoanhNhan-2A202602770
+- **Vai trò:** Phụ trách Evaluation & Synthetic Corruption.
+- **Công việc chi tiết đã hoàn thành:**
+  - Sinh 10 câu test trong `src/evaluation/testset.py`, phủ 4 nhóm `summary`, `authors`, `date`, `categories`, ghi `data/eval/test_set.json`.
+  - Rà soát Hit Rate và Token F1 trong `src/evaluation/metrics.py`.
+  - Tiêm 6 lỗi trong `src/ingestion/corruption.py`: drop 20% bản ghi mới, blank summary, inject noise, truncate title dưới 8 ký tự, stale date, duplicate rows; rebuild `text_for_embedding` và ghi `data/results/corruption_log.json`.
+- **Điều học được / Đóng góp chính:**
+  - Cách đo mức suy giảm của RAG khi dữ liệu bẩn và chứng minh Quality Gate bắt được lỗi.
